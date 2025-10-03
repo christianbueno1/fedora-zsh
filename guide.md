@@ -23,3 +23,19 @@ podman pull docker.io/library/fedora:42
 
 # how to update the image
 podman pull docker.io/library/fedora:42
+# build the image again with the updated base image
+podman build -t docker.io/christianbueno1/fedora-chris:2 .
+
+# after update and building the image, stop and remove the container
+podman stop fedora-container
+podman rm fedora-container
+# remove the image
+podman rmi docker.io/christianbueno1/fedora-chris:1
+# remove the volume
+podman volume rm chris-home
+# create a new volume
+podman volume create chris-home
+# create a new container with the updated image
+podman run -it --name fedora-container \
+  -v chris-home:/home/chris \
+  docker.io/christianbueno1/fedora-chris:2 zsh
