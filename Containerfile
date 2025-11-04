@@ -1,4 +1,4 @@
-FROM fedora:42
+FROM fedora:43
 
 # Instalar dependencias necesarias
 RUN dnf update -y && \

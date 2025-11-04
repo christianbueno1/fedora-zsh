@@ -4,7 +4,10 @@ podman login -u christianbueno1 registry-1.docker.io
 # check if you are logged in
 podman login --get-login registry-1.docker.io
 
-podman build -t docker.io/christianbueno1/fedora-chris:1 .
+podman build -t docker.io/christianbueno1/chris-fedora43:latest -f Containerfile .
+
+# run and start in the foreground without volume
+podman run -it --name fedora-container docker.io/christianbueno1/chris-fedora43:latest zsh
 
 podman volume create chris-home
 
