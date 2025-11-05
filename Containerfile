@@ -22,5 +22,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 RUN sed -i 's/^ZSH_THEME=.*$/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc && \
     sed -i 's/^plugins=(/&zsh-autosuggestions /' ~/.zshrc
 
+COPY --chown=chris:chris p10k.zsh /home/chris/.p10k.zsh
+
 # Comando por defecto
 # CMD ["sleep", "infinity"]
