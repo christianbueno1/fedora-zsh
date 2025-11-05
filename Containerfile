@@ -2,7 +2,7 @@ FROM fedora:43
 
 # Instalar dependencias necesarias
 RUN dnf update -y && \
-    dnf install -y sudo zsh git curl && \
+    dnf install -y sudo zsh git curl fastfetch && \
     dnf clean all
 
 # Crear usuario chris
