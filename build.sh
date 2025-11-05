@@ -10,6 +10,9 @@ echo "Building image for commit: $COMMIT_SHA on branch: $BRANCH_NAME"
 # variables
 IMAGE_NAME="chris-fedora43"
 USER_NAME="christianbueno1"
+# use $1 set default false
+RUN_CONTAINER="${1:-false}" # set to true to run the container after building
+
 
 # build the image with podman
 podman build -t docker.io/$USER_NAME/$IMAGE_NAME:$COMMIT_SHA -f Containerfile .
@@ -35,3 +38,10 @@ podman push docker.io/$USER_NAME/$IMAGE_NAME:$BRANCH_NAME
 if [ "$BRANCH_NAME" == "main" ]; then
     podman push docker.io/$USER_NAME/$IMAGE_NAME:latest
 fi
+
+# run the container
+if [ "$RUN_CONTAINER" == "run" ]; then
+    echo "Running the container..."
+    podman run -it --rm docker.io/$USER_NAME/$IMAGE_NAME:$COMMIT_SHA
+fi
+echo "Done."
