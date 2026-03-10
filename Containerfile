@@ -31,11 +31,11 @@ RUN dnf update -y && \
     rm -rf /var/cache/dnf/*
 
 # ============================================
-# 2. DOTNET 9 SDK (desde repos de Fedora)
+# 2. DOTNET 10 SDK (desde repos de Fedora)
 # ============================================
 RUN dnf install -y \
-        dotnet-sdk-9.0 \
-        aspnetcore-runtime-9.0 \
+        dotnet-sdk-10.0 \
+        aspnetcore-runtime-10.0 \
         && \
     dnf clean all
 
