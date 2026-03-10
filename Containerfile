@@ -78,7 +78,13 @@ RUN groupadd --gid 1000 vscode && \
     chown -R vscode:vscode /home/vscode
 
 # ============================================
-# 7. CONFIGURAR ZSH PARA VSCODE
+# 7. CREAR /workspaces Y ASIGNAR PERMISOS (como root)
+# ============================================
+RUN mkdir -p /workspaces && \
+    chown vscode:vscode /workspaces
+
+# ============================================
+# 8. CONFIGURAR ZSH PARA VSCODE
 # ============================================
 USER vscode
 WORKDIR /home/vscode
@@ -118,7 +124,7 @@ RUN sed -i 's/^ZSH_THEME=.*$/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
     echo 'export EDITOR=vim' >> ~/.zshrc
 
 # ============================================
-# 8. CONFIGURAR GIT (template para el equipo)
+# 9. CONFIGURAR GIT (template para el equipo)
 # ============================================
 RUN git config --global init.defaultBranch main && \
     git config --global pull.rebase false && \
@@ -126,14 +132,11 @@ RUN git config --global init.defaultBranch main && \
     git config --global core.autocrlf input && \
     git config --global push.default simple
 
-# Crear directorio de trabajo estándar
-RUN mkdir -p /workspace
-
 # ============================================
-# 9. FINALIZAR
+# 10. FINALIZAR
 # ============================================
 USER vscode
-WORKDIR /workspace
+WORKDIR /workspaces
 
 ENV SHELL=/bin/zsh \
     HOME=/home/vscode \
