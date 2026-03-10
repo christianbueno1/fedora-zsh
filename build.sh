@@ -8,7 +8,7 @@ BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD | tr '/' '-')
 # print for debugging
 echo "Building image for commit: $COMMIT_SHA on branch: $BRANCH_NAME"
 # variables
-IMAGE_NAME="chris-fedora43"
+IMAGE_NAME="devops-fedora43"
 USER_NAME="christianbueno1"
 # use $1 set default false
 RUN_CONTAINER="${1:-false}" # set to true to run the container after building
