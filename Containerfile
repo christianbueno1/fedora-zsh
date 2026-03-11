@@ -42,22 +42,24 @@ RUN dnf install -y \
 # ============================================
 # 3. HERRAMIENTAS CLOUD AWS Y AZURE (desde repos Fedora)
 # ============================================
-RUN dnf install -y \
-        awscli2 \
-        azure-cli \
-        && \
-    dnf clean all
+# RUN dnf install -y \
+#         awscli2 \
+#         azure-cli \
+#         && \
+#     dnf clean all
 
 # ============================================
 # 4. HERRAMIENTAS DEVOPS (¡TODAS DESDE REPOS FEDORA!)
 # ============================================
 RUN dnf install -y \
-        ansible \
         opentofu \
-        helm \
-        kubernetes1.35-client \
+        # helm \
+        # kubernetes1.35-client \
         && \
     dnf clean all
+
+# Ansible es muy pesado (378 MiB) - comentar si no se usa
+RUN dnf install -y ansible && dnf clean all
 
 # ============================================
 # 5. ANSIBLE LINT Y MOLECULE (pip, no hay en repos)
