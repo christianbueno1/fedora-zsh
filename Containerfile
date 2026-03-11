@@ -51,24 +51,24 @@ RUN dnf install -y \
 # ============================================
 # 4. HERRAMIENTAS DEVOPS (¡TODAS DESDE REPOS FEDORA!)
 # ============================================
-RUN dnf install -y \
-        opentofu \
-        # helm \
-        # kubernetes1.35-client \
-        && \
-    dnf clean all
+# RUN dnf install -y \
+#         opentofu \
+#         helm \
+#         kubernetes1.35-client \
+#         && \
+#     dnf clean all
 
 # Ansible es muy pesado (378 MiB) - comentar si no se usa
-RUN dnf install -y ansible && dnf clean all
+# RUN dnf install -y ansible && dnf clean all
 
 # ============================================
 # 5. ANSIBLE LINT Y MOLECULE (pip, no hay en repos)
 # ============================================
-RUN pip3 install --no-cache-dir \
-        ansible-lint \
-        molecule \
-        molecule-podman \
-        pytest-testinfra
+# RUN pip3 install --no-cache-dir \
+#         ansible-lint \
+#         molecule \
+#         molecule-podman \
+#         pytest-testinfra
 
 # ============================================
 # 6. CREAR USUARIO GENÉRICO 'vscode' (ESTÁNDAR)
@@ -123,7 +123,7 @@ RUN sed -i 's/^ZSH_THEME=.*$/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
     echo 'export ZSH_DISABLE_COMPFIX=true' >> ~/.zshrc && \
     echo 'export PATH=$HOME/.local/bin:$HOME/.dotnet/tools:$PATH' >> ~/.zshrc && \
     echo 'export DOTNET_CLI_TELEMETRY_OPTOUT=1' >> ~/.zshrc && \
-    echo 'export SSL_CERT_DIR=$HOME/.aspnet/dev-certs/trust' >> ~/.zshrc && \
+    # echo 'export SSL_CERT_DIR=$HOME/.aspnet/dev-certs/trust' >> ~/.zshrc && \
     echo 'export EDITOR=vim' >> ~/.zshrc
 
 # ============================================
