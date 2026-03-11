@@ -21,7 +21,7 @@ RUN dnf update -y && \
         # Python (para Ansible)
         python3 python3-pip \
         # Herramientas de red y sistema
-        bind-utils iputils net-tools iproute procps-ng \
+        bind-utils iputils net-tools iproute procps-ng openssl \
         # Compresión y archivos
         unzip tar gzip xz zip \
         # Otros útiles
@@ -121,6 +121,7 @@ RUN sed -i 's/^ZSH_THEME=.*$/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
     echo 'export ZSH_DISABLE_COMPFIX=true' >> ~/.zshrc && \
     echo 'export PATH=$HOME/.local/bin:$HOME/.dotnet/tools:$PATH' >> ~/.zshrc && \
     echo 'export DOTNET_CLI_TELEMETRY_OPTOUT=1' >> ~/.zshrc && \
+    echo 'export SSL_CERT_DIR=$HOME/.aspnet/dev-certs/trust' >> ~/.zshrc && \
     echo 'export EDITOR=vim' >> ~/.zshrc
 
 # ============================================
